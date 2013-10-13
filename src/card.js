@@ -54,12 +54,16 @@
       + '</div>';
     jsonp(url, function(response) {
       var data = response.data || {};
+      var defaults = '0';
+      if (data.message) {
+        defaults = '?';
+      }
       template = template.replace(/#username/g, user);
       template = template.replace('#avatar', data.avatar_url || '');
       template = template.replace('#fullname', data.name || user);
-      template = template.replace('#repos', data.public_repos || '?');
-      template = template.replace('#gists', data.public_gists || '?');
-      template = template.replace('#followers', data.followers || '?');
+      template = template.replace('#repos', data.public_repos || defaults);
+      template = template.replace('#gists', data.public_gists || defaults);
+      template = template.replace('#followers', data.followers || defaults);
       var footer = 'Not available for hiring.';
       if (data.hireable) {
         var url = ''
@@ -108,6 +112,10 @@
       + '</span></div></div>';
     jsonp(url, function(response) {
       var data = response.data || {};
+      var defaults = '0';
+      if (data.message) {
+        defaults = '?';
+      }
       template = template.replace(/#username/g, user);
       template = template.replace(/#repo/g, repo);
       var avatar = '';
@@ -116,8 +124,8 @@
       }
       template = template.replace('#avatar', avatar);
       template = template.replace('#language', data.language || '');
-      template = template.replace('#forks', data.forks_count || '?');
-      template = template.replace('#stars', data.watchers_count || '?');
+      template = template.replace('#forks', data.forks_count || defaults);
+      template = template.replace('#stars', data.watchers_count || defaults);
       if (data.fork) {
         template = template.replace('#action', 'Forked');
       } else {
