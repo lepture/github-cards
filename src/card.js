@@ -14,6 +14,8 @@
     return qs;
   }
 
+  var qs = querystring();
+
   var jsonpfunc = 'ghcard' + new Date().valueOf();
 
   function jsonp(url, callback) {
@@ -29,9 +31,7 @@
     var links = card.getElementsByTagName('a');
     for (i = 0; i < links.length; i++) {
       (function(link) {
-        link.onclick = function() {
-          top.location.href = link.href;
-        }
+        link.target = '_' + (qs.target || 'top');
       })(links[i]);
     }
     d.body.appendChild(card);
@@ -164,7 +164,6 @@
   function errorCard() {
   }
 
-  var qs = querystring();
   if (!qs.user) {
     errorCard();
   } else if (qs.repo) {
