@@ -3,6 +3,7 @@
   <head>
     <title>Github Cards</title>
     <link rel="stylesheet" href="site.css">
+    <meta name="github-card" content="card.html">
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-21475122-5']);
@@ -29,18 +30,19 @@
         <div class="case user">
           <h2>User Card</h2>
           <p>Show your GitHub profile.</p>
-          <iframe src="card.html?user=lepture" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
+          <div class="github-card" data-user="lepture"></div>
         </div>
         <div class="case repo">
           <h2>Repo Card</h2>
           <p>Show your GitHub repository.</p>
-          <iframe src="card.html?user=lepture&repo=github-cards" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
+          <div class="github-card" data-user="lepture" data-repo="github-cards" data-height=200></div>
         </div>
       </div>
       <div class="footer">
         <p>Created by <a href="http://lepture.com/">Hsiaoming Yang</a></p>
       </div>
     </div>
+    <script src="widget.js"></script>
   </body>
 </html>
 
