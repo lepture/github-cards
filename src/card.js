@@ -34,6 +34,13 @@
         }
       })(links[i]);
     }
+    d.body.appendChild(card);
+    if (parent !== self && parent.postMessage) {
+      parent.postMessage({
+        height: d.body.clientHeight,
+        sender: 'github-cards'
+      }, '*');
+    }
   }
 
   function userCard(user) {
@@ -84,7 +91,6 @@
       card.className = 'github-card user-card';
       card.innerHTML = template;
       linky(card);
-      d.body.appendChild(card);
     });
   }
 
@@ -152,7 +158,6 @@
       card.className = 'github-card repo-card';
       card.innerHTML = template;
       linky(card);
-      d.body.appendChild(card);
     });
   }
 
