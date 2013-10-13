@@ -14,6 +14,7 @@ body {
   border-radius: 5px;
   padding: 8px 8px 0;
   background: #fff;
+  color: #555;
   position: relative;
 }
 
@@ -49,6 +50,7 @@ body {
 }
 .github-card .button:hover {
   color: #fff;
+  text-decoration: none;
   background-color: #3072b3;
   background-image: -webkit-linear-gradient(#599bdc, #3072b3);
   background-image: -moz-linear-gradient(#599bdc, #3072b3);
@@ -58,6 +60,7 @@ body {
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 }
 
+/* user card */
 .user-card .header {
   padding: 3px 0 4px 57px;
   min-height: 48px;
@@ -126,4 +129,56 @@ body {
 }
 .user-card .footer a {
   color: #646464;
+}
+
+/* repo card */
+.repo-card .header {
+  padding: 3px 0 4px 57px;
+}
+.repo-card .avatar, .repo-card .avatar img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 4px;
+}
+.repo-card .header a {
+  color: #707070;
+}
+.repo-card .header strong {
+  display: block;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.repo-card .header strong a {
+  color: #292f33;
+}
+.repo-card .header sup {
+  font-size: 10px;
+  margin-left: 3px;
+  color: #797979;
+}
+.repo-card .content {
+  padding: 6px 0 10px;
+}
+.repo-card .content p {
+  margin: 0 5px 0 0;
+  font: 18px/24px Georgia, "Times New Roman", Palatino, serif;
+  overflow: hidden;
+  clear: both;
+  word-wrap: break-word;
+}
+.repo-card .footer {
+  border-top: 1px solid #eee;
+  padding: 8px 0 6px;
+}
+.repo-card .status {
+  font-size: 10px;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+.repo-card .status strong {
+  font-size: 12px;
 }

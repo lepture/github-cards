@@ -25,6 +25,17 @@
     d.body.appendChild(script);
   }
 
+  function linky(card) {
+    var links = card.getElementsByTagName('a');
+    for (i = 0; i < links.length; i++) {
+      (function(link) {
+        link.onclick = function() {
+          top.location.href = link.href;
+        }
+      })(links[i]);
+    }
+  }
+
   function userCard(user) {
     var url = baseurl + 'users/' + user;
     var template = '<div class="header">'
@@ -65,11 +76,66 @@
       var card = d.createElement('div');
       card.className = 'github-card user-card';
       card.innerHTML = template;
+      linky(card);
       d.body.appendChild(card);
     });
   }
 
   function repoCard(user, repo) {
+    var url = baseurl + 'repos/' + user + '/' + repo;
+    var template = '<div class="github-card repo-card">'
+      + '<div class="header">'
+      + '<a class="avatar" href="https://github.com/#username">'
+      + '<img src="#avatar"></a>'
+      + '<strong class="name">'
+      + '<a href="https://github.com/#username/#repo">#repo</a>'
+      + '<sup class="language">#language</sup></strong>'
+      + '<span>#action by <a href="https://github.com/#username"">#username</a></span>'
+      + '<a class="button" href="https://github.com/#username/#repo">Star</a>'
+      + '</div>'
+      + '<div class="content">'
+      + '<p>#description#homepage</p>'
+      + '</div>'
+      + '<div class="footer">'
+      + '<span class="status">'
+      + '<strong>#forks</strong> Forks'
+      + '</span>'
+      + '<span class="status">'
+      + '<strong>#stars</strong> Stars'
+      + '</span></div></div>';
+    jsonp(url, function(response) {
+      var data = response.data;
+      template = template.replace(/#username/g, user);
+      template = template.replace(/#repo/g, repo);
+      template = template.replace('#avatar', data.owner.avatar_url);
+      template = template.replace('#language', data.language || '');
+      template = template.replace('#forks', data.forks_count);
+      template = template.replace('#stars', data.watchers_count);
+      if (data.fork) {
+        template = template.replace('#action', 'Forked');
+      } else {
+        template = template.replace('#action', 'Created');
+      }
+      var description = data.description;
+      if (!description && data.source) {
+        description = data.source.description;
+      }
+      template = template.replace('#description', description || 'No description.');
+      var homepage = data.homepage;
+      if (!homepage && data.source) {
+        homepage = data.source.homepage;
+      }
+      if (homepage) {
+        homepage = ' <a href="' + homepage + '">' + homepage.replace(/https?:\/\//, '') + '</a>';
+      }
+      template = template.replace('#homepage', homepage || '');
+
+      var card = d.createElement('div');
+      card.className = 'github-card repo-card';
+      card.innerHTML = template;
+      linky(card);
+      d.body.appendChild(card);
+    });
   }
 
   function errorCard() {
