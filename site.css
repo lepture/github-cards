@@ -53,3 +53,19 @@ html, body {
 .cases .user {
   margin-right: 80px;
 }
+
+.footer {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #707070;
+  text-align: center;
+  padding-bottom: 20px;
+}
+.footer a {
+  text-decoration: none;
+  color: #797979;
+  outline: 0;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
