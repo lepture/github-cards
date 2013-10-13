@@ -53,13 +53,13 @@
       + '<div class="footer">#footer</a></div>'
       + '</div>';
     jsonp(url, function(response) {
-      var data = response.data;
-      template = template.replace(/#username/g, data.login);
-      template = template.replace('#avatar', data.avatar_url);
-      template = template.replace('#fullname', data.name);
-      template = template.replace('#repos', data.public_repos);
-      template = template.replace('#gists', data.public_gists);
-      template = template.replace('#followers', data.followers);
+      var data = response.data || {};
+      template = template.replace(/#username/g, user);
+      template = template.replace('#avatar', data.avatar_url || '');
+      template = template.replace('#fullname', data.name || user);
+      template = template.replace('#repos', data.public_repos || '?');
+      template = template.replace('#gists', data.public_gists || '?');
+      template = template.replace('#followers', data.followers || '?');
       var footer = 'Not available for hiring.';
       if (data.hireable) {
         var url = ''
@@ -71,6 +71,9 @@
           url = data.html_url;
         }
         footer = '<a href="' + url + '">Available for hiring.</a>';
+      }
+      if (data.message) {
+        footer = data.message;
       }
       template = template.replace('#footer', footer);
       var card = d.createElement('div');
@@ -104,13 +107,17 @@
       + '<strong>#stars</strong> Stars'
       + '</span></div></div>';
     jsonp(url, function(response) {
-      var data = response.data;
+      var data = response.data || {};
       template = template.replace(/#username/g, user);
       template = template.replace(/#repo/g, repo);
-      template = template.replace('#avatar', data.owner.avatar_url);
+      var avatar = '';
+      if (data.owner && data.owner.avatar_url) {
+        avatar = data.owner.avatar_url;
+      }
+      template = template.replace('#avatar', avatar);
       template = template.replace('#language', data.language || '');
-      template = template.replace('#forks', data.forks_count);
-      template = template.replace('#stars', data.watchers_count);
+      template = template.replace('#forks', data.forks_count || '?');
+      template = template.replace('#stars', data.watchers_count || '?');
       if (data.fork) {
         template = template.replace('#action', 'Forked');
       } else {
@@ -119,6 +126,9 @@
       var description = data.description;
       if (!description && data.source) {
         description = data.source.description;
+      }
+      if (data.message) {
+        description = data.message;
       }
       template = template.replace('#description', description || 'No description.');
       var homepage = data.homepage;
