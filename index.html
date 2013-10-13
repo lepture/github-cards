@@ -2,20 +2,26 @@
 <html>
   <head>
     <title>Github Cards</title>
+    <link rel="stylesheet" href="site.css">
   </head>
   <body>
-    <div class="header">
-      <div class="unofficial">The unofficial</div>
-      <h1>Github Cards</h1>
-    </div>
-    <div class="cases">
-      <div class="case user">
-        <h2>User Card</h2>
-        <iframe src="card.html?user=lepture" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
+    <div class="container">
+      <div class="header">
+        <div class="unofficial">The unofficial</div>
+        <h1>Github Cards</h1>
+        <p>Card for your GitHub profile, card for your GitHub repositories.</p>
       </div>
-      <div class="case repo">
-        <h2>Repo Card</h2>
-        <iframe src="card.html?user=lepture&repo=flask-wtf" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
+      <div class="cases">
+        <div class="case user">
+          <h2>User Card</h2>
+          <p>Show your GitHub profile.</p>
+          <iframe src="card.html?user=lepture" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
+        </div>
+        <div class="case repo">
+          <h2>Repo Card</h2>
+          <p>Show your GitHub repository.</p>
+          <iframe src="card.html?user=lepture&repo=github-cards" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
+        </div>
       </div>
     </div>
   </body>

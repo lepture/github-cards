@@ -1,0 +1,55 @@
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Nenu", Hevetica, Arial, sans-serif;
+}
+.container {
+  *width: 960px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 80px;
+}
+
+.header {
+  text-align: center;
+}
+.header:after {
+  display: block;
+  content: '';
+  border-bottom: 1px solid #ddd;
+  width: 80px;
+  margin: 0 auto;
+}
+.unofficial {
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #999;
+}
+.header h1 {
+  margin: 0 0 20px;
+  font: bold 80px/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #404040;
+}
+.header p {
+  font: 28px/34px Georgia, "Times New Roman", Palatino, serif;
+}
+
+.cases {
+  margin-top: 60px;
+  zoom: 1;
+}
+.cases:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.case {
+  float: left;
+}
+.case p {
+  color: #666;
+}
+.cases .user {
+  margin-right: 80px;
+}
