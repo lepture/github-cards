@@ -30,6 +30,9 @@ a user card.
 
 You need to find the perfect width and height yourself.
 
+Additional note: if you want to open links in new tab, add parameter
+`target=blank`.
+
 ### widget.js
 
 You can include the `widget.js` script, it will create the embed iframes
@@ -48,6 +51,14 @@ Example of repo card:
 <div class="github-card" data-user="lepture" data-repo="github-cards"></div>
 <script src="http://lab.lepture.com/github-cards/widget.js"></script>
 ```
+
+Data parameters:
+
+- user: GitHub username
+- repo: GitHub repository name
+- width: Embed width you want, default is 400
+- height: Embed height you want, default is 200
+- target: If you want to open links in new tab, set it to `blank`
 
 ## Limitation
 

@@ -39,6 +39,7 @@
     var repo = querydata(card, 'repo');
     var width = querydata(card, 'width');
     var height = querydata(card, 'height');
+    var target = queryclass(card, 'target');
 
     var iframe = d.createElement('iframe');
     iframe.setAttribute('frameborder', 0);
@@ -48,6 +49,9 @@
     var url = baseurl + '?user=' + user;
     if (repo) {
       url += '&repo=' + repo;
+    }
+    if (target) {
+      url += '&target=' + target;
     }
     iframe.src = url;
     iframe.width = width || Math.min(d.body.clientWidth || 400, 400);
