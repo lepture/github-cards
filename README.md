@@ -78,8 +78,8 @@ Data parameters:
 You can also define in meta tags:
 
 ```html
-<meta name="github-card-client-id" content="client id string">
-<meta name="github-card-client-secret" content="client secret string">
+<meta name="gc:client-id" content="client id string">
+<meta name="gc:client-secret" content="client secret string">
 ```
 
 ## Limitation
