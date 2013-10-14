@@ -14,11 +14,34 @@
     return qs;
   }
 
+  function store(key, value) {
+    if (window.localStorage) {
+      if (value) {
+        value._timestamp = new Date().valueOf();
+        localStorage[key] = JSON.stringify(value);
+      } else {
+        var ret = localStorage[key];
+        if (ret) {
+          return JSON.parse(ret);
+        }
+        return null;
+      }
+    }
+  }
+
   var qs = querystring();
 
   var jsonpfunc = 'ghcard' + new Date().valueOf();
 
   function jsonp(url, callback) {
+    var cache = store(url);
+    if (cache && cache._timestamp) {
+      var delta = new Date().valueOf() - cache._timestamp;
+      // cache in 10s
+      if (delta < 10000) {
+        return callback({data: cache});
+      }
+    }
     window[jsonpfunc] = function(response) {
       callback(response);
     }
@@ -69,9 +92,13 @@
       + '</div>';
     jsonp(url, function(response) {
       var data = response.data || {};
+      var message = data.message;
       var defaults = '0';
-      if (data.message) {
+      if (message) {
+        data = store(url) || data;
         defaults = '?';
+      } else {
+        store(url, data);
       }
       template = template.replace(/#username/g, user);
       template = template.replace('#avatar', data.avatar_url || '');
@@ -81,18 +108,18 @@
       template = template.replace('#followers', data.followers || defaults);
       var footer = 'Not available for hire.';
       if (data.hireable) {
-        var url = ''
+        var link = ''
         if (data.email) {
-          url = 'mailto:' + data.email;
+          link = 'mailto:' + data.email;
         } else if (data.blog) {
-          url = data.blog;
+          link = data.blog;
         } else {
-          url = data.html_url;
+          link = data.html_url;
         }
-        footer = '<a href="' + url + '">Available for hire.</a>';
+        footer = '<a href="' + link + '">Available for hire.</a>';
       }
-      if (data.message) {
-        footer = data.message;
+      if (message) {
+        footer = message;
       }
       template = template.replace('#footer', footer);
       var card = d.createElement('div');
@@ -126,9 +153,13 @@
       + '</span></div></div>';
     jsonp(url, function(response) {
       var data = response.data || {};
+      var message = data.message;
       var defaults = '0';
-      if (data.message) {
+      if (message) {
+        data = store(url) || data;
         defaults = '?';
+      } else {
+        store(url, data);
       }
       template = template.replace(/#username/g, user);
       template = template.replace(/#repo/g, repo);
@@ -149,8 +180,8 @@
       if (!description && data.source) {
         description = data.source.description;
       }
-      if (data.message) {
-        description = data.message;
+      if (!description && message) {
+        description = message;
       }
       template = template.replace('#description', description || 'No description.');
       var homepage = data.homepage;
