@@ -79,7 +79,7 @@
       template = template.replace('#repos', data.public_repos || defaults);
       template = template.replace('#gists', data.public_gists || defaults);
       template = template.replace('#followers', data.followers || defaults);
-      var footer = 'Not available for hiring.';
+      var footer = 'Not available for hire.';
       if (data.hireable) {
         var url = ''
         if (data.email) {
@@ -89,7 +89,7 @@
         } else {
           url = data.html_url;
         }
-        footer = '<a href="' + url + '">Available for hiring.</a>';
+        footer = '<a href="' + url + '">Available for hire.</a>';
       }
       if (data.message) {
         footer = data.message;
