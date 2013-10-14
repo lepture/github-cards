@@ -29,9 +29,13 @@ function githubCard() {
       var textarea = d.getElementById('howto-code');
       card.setAttribute('data-width', iframe.width);
       card.setAttribute('data-height', iframe.height);
-      var value = card.outerHTML;
-      value += '\n<script src="http://lab.lepture.com/github-cards/widget.js"></script>';
-      textarea.value = value;
+      var html = card.outerHTML;
+      html += '\n<script src="http://lab.lepture.com/github-cards/widget.js"></script>';
+      textarea.value = html;
+      if (location.hash.slice(1) !== value) {
+        location.hash = '#' + value;
+      }
+      d.documentElement.scrollTop = 630;
     }
   }
 
@@ -44,6 +48,13 @@ function githubCard() {
 
   input.onkeydown = function() {
     clearTimeout(timer);
+  }
+
+  if (location.hash) {
+    window.onload = function() {
+      input.value = location.hash.slice(1);
+      preview(input.value);
+    }
   }
 }
 
