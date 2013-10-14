@@ -4,6 +4,8 @@ body {
   font-size: 14px;
   font-family: "Helvetica Nenu", Hevetica, Arial, sans-serif;
   overflow: hidden;
+}
+body.ready {
   border: 1px solid #eee;
   border-radius: 5px;
   border-color: #eee #ddd #bbb;

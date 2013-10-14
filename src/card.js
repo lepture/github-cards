@@ -61,6 +61,7 @@
       })(links[i]);
     }
     d.body.appendChild(card);
+    d.body.className = 'ready';
     if (parent !== self && parent.postMessage) {
       var height = Math.max(
         d.body.scrollHeight,
