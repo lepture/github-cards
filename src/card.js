@@ -45,7 +45,11 @@
       callback(response);
     }
     var script = d.createElement('script');
-    script.src = url + '?callback=' + jsonpfunc;
+    url += '?callback=' + jsonpfunc;
+    if (qs.client_id && qs.client_secret) {
+      url += '&client_id=' + qs.client_id + '&client_secret=' + qs.client_secret;
+    }
+    script.src = url;
     d.body.appendChild(script);
   }
 

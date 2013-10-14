@@ -2,6 +2,19 @@
 
   var i, count = 0;
 
+  var metas = d.head.getElementsByTagName('meta');
+  var baseurl = 'http://lab.lepture.com/github-cards/card.html'
+  var client_id, client_secret;
+  for (i = 0; i < metas.length; i++) {
+    if (metas[i].getAttribute('name') == 'github-card') {
+      baseurl = metas[i].getAttribute('content');
+    } else if (metas[i].getAttribute('name') == 'github-card-client-id') {
+      client_id = metas[i].getAttribute('content');
+    } else if (metas[i].getAttribute('name') == 'github-card-client-secret') {
+      client_secret = metas[i].getAttribute('content');
+    }
+  }
+
   function queryclass(name) {
     if (d.querySelectorAll) {
       return d.querySelectorAll('.' + name);
@@ -43,6 +56,10 @@
     var width = querydata(card, 'width');
     var height = querydata(card, 'height');
     var target = querydata(card, 'target');
+
+    var key = querydata(card, 'client-id') || client_id;
+    var secret = querydata(card, 'client-secret') || client_secret;
+
     var identity = 'ghcard-' + user + '-' + count;
 
     var iframe = d.createElement('iframe');
@@ -58,6 +75,9 @@
     if (target) {
       url += '&target=' + target;
     }
+    if (key && secret) {
+      url += '&client_id=' + key + '&client_secret=' + secret;
+    }
     iframe.src = url;
     iframe.width = width || Math.min(d.body.clientWidth || 400, 400);
     if (height) {
@@ -66,15 +86,6 @@
     heighty(iframe);
     card.parentNode.replaceChild(iframe, card);
     return iframe;
-  }
-
-  var metas = d.head.getElementsByTagName('meta');
-  var baseurl = 'http://lab.lepture.com/github-cards/card.html'
-  for (i = 0; i < metas.length; i++) {
-    if (metas[i].getAttribute('name') == 'github-card') {
-      baseurl = metas[i].getAttribute('content');
-      break;
-    }
   }
 
   var cards = queryclass('github-card');
