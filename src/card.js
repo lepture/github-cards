@@ -27,7 +27,7 @@
     d.body.appendChild(script);
   }
 
-  function linky(card) {
+  function linky(card, identity) {
     var links = card.getElementsByTagName('a');
     for (i = 0; i < links.length; i++) {
       (function(link) {
@@ -36,9 +36,17 @@
     }
     d.body.appendChild(card);
     if (parent !== self && parent.postMessage) {
+      var height = Math.max(
+        d.body.scrollHeight,
+        d.documentElement.scrollHeight,
+        d.body.offsetHeight,
+        d.documentElement.offsetHeight,
+        d.body.clientHeight,
+        d.documentElement.clientHeight
+      );
       parent.postMessage({
-        height: d.body.clientHeight,
-        sender: 'github-cards'
+        height: height,
+        sender: qs.identity || '*'
       }, '*');
     }
   }
