@@ -68,3 +68,13 @@ There are some limitations for github cards.
 1. GitHub API rate limitation
 2. SSL sites need to host its own cards
 3. No interaction, it can't show your following status
+
+## Contribution
+
+This project is under the BSD License.
+
+Here are some tips on contribution:
+
+- Don't modify card.html, it is generated with src/card.js and src/card.css.
+- Don't generate card.html yourself.
+- Don't change the gh-pages branch.
