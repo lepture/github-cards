@@ -52,6 +52,36 @@ html, body {
 }
 .cases .user {
   margin-right: 80px;
+  min-width: 40%;
+}
+
+.howto {
+  text-align: center;
+}
+.howto input, .howto textarea {
+  padding: 4px 8px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  width: 460px;
+  max-width: 90%;
+  border-radius: 4px;
+  color: #565656;
+  outline: 0;
+}
+.howto input {
+  text-align: center;
+  font: normal 28px/30px "Helvetica Nenu", Hevetica, Arial, sans-serif;
+}
+.howto textarea {
+  font-size: 16px;
+  text-align: left;
+  height: 80px;
+}
+.howto input:focus, .howto textarea:focus {
+  border-color: #bbb;
+}
+.howto-section {
+  margin-bottom: 40px;
 }
 
 .footer {
