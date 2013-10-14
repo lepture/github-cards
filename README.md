@@ -2,6 +2,7 @@
 
 Card for your GitHub profile, card for your GitHub repositories.
 
+Vote it on HackerNews: https://news.ycombinator.com/item?id=6545172
 
 ## Usage
 
