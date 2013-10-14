@@ -8,6 +8,8 @@ Vote it on HackerNews: https://news.ycombinator.com/item?id=6545172
 
 The cards are hosted via GitHub Pages.
 
+Visit card generator: http://lab.lepture.com/github-cards/
+
 ### iframe
 
 You can embed it with iframes.
