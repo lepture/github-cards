@@ -36,6 +36,16 @@ You need to find the perfect width and height yourself.
 Additional note: if you want to open links in new tab, add parameter
 `target=blank`.
 
+Additional parameters:
+
+- target: if target=blank, links will be opened in a new tab.
+- client_id: your app client_id
+- client_secret: your app client_secret
+
+client_id and client_secret can increase your API rate: http://developer.github.com/v3/#unauthenticated-rate-limited-requests
+
+But it is not suggested to do such thing.
+
 ### widget.js
 
 You can include the `widget.js` script, it will create the embed iframes
@@ -62,6 +72,15 @@ Data parameters:
 - width: Embed width you want, default is 400
 - height: Embed height you want, default is 200
 - target: If you want to open links in new tab, set it to `blank`
+- client_id: Your app client_id, optional
+- client_secret: Your app client_secret, optional
+
+You can also define in meta tags:
+
+```html
+<meta name="github-card-client-id" content="client id string">
+<meta name="github-card-client-secret" content="client secret string">
+```
 
 ## Limitation
 
