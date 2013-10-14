@@ -65,6 +65,7 @@
     }
     heighty(iframe);
     card.parentNode.replaceChild(iframe, card);
+    return iframe;
   }
 
   var metas = d.head.getElementsByTagName('meta');
@@ -79,6 +80,10 @@
   var cards = queryclass('github-card');
   for (i = 0; i < cards.length; i++) {
     render(cards[i], baseurl);
+  }
+
+  if (window.githubCard) {
+    window.githubCard.render = render;
   }
 
 })(document);

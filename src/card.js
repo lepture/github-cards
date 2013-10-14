@@ -36,9 +36,8 @@
   function jsonp(url, callback) {
     var cache = store(url);
     if (cache && cache._timestamp) {
-      var delta = new Date().valueOf() - cache._timestamp;
       // cache in 10s
-      if (delta < 10000) {
+      if (new Date().valueOf() - cache._timestamp < 10000) {
         return callback({data: cache});
       }
     }
