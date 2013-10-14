@@ -8,6 +8,13 @@ card:
 widget:
 	@uglifyjs src/widget.js -o widget.js
 
+develop:
+	@echo '<!doctype html><html><body>' > card.html
+	@echo '<link rel="stylesheet" href="src/card.css">' >> card.html
+	@echo '<script src="src/card.js"></script>' >> card.html
+	@echo '</body></html>' >> card.html
+
+
 build: card widget
 
 .PHONY: card widget build
