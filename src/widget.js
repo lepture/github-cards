@@ -38,7 +38,7 @@
       window.addEventListener('message', function(e) {
         if (~iframe.src.indexOf(e.origin)) {
           if (iframe.id === e.data.sender) {
-            iframe.height = e.data.height + 10;
+            iframe.height = e.data.height;
           }
         }
       }, false);
