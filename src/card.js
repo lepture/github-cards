@@ -50,6 +50,9 @@
       url += '&client_id=' + qs.client_id + '&client_secret=' + qs.client_secret;
     }
     script.src = url;
+    script.onload = function() {
+      d.body.removeChild(script);
+    }
     d.body.appendChild(script);
   }
 
