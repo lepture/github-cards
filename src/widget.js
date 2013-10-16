@@ -2,7 +2,7 @@
 
   var i, count = 0;
 
-  var metas = d.head.getElementsByTagName('meta');
+  var metas = d.getElementsByTagName('meta');
   var baseurl = 'http://lab.lepture.com/github-cards/card.html'
   var client_id, client_secret;
   for (i = 0; i < metas.length; i++) {
