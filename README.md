@@ -4,6 +4,8 @@ Card for your GitHub profile, card for your GitHub repositories.
 
 Vote it on HackerNews: https://news.ycombinator.com/item?id=6545172
 
+![GitHub Cards Preview](https://f.cloud.github.com/assets/290496/1350967/28069848-3716-11e3-8f87-0bef45aff1c4.png)
+
 ## Usage
 
 The cards are hosted via GitHub Pages.
