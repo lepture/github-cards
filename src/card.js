@@ -83,20 +83,23 @@
 
   function userCard(user) {
     var url = baseurl + 'users/' + user;
-    var template = '<div class="header">'
-      + '<a class="avatar" href="https://github.com/#username">'
-      + '<img src="#avatar">'
-      + '<strong>#fullname</strong>'
-      + '<span>@#username</span></a>'
-      + '<a class="button" href="https://github.com/#username">Follow</a>'
-      + '</div>'
+
+    var template =
+      '<div class="header">'
+        + '<a class="avatar" href="https://github.com/#username"><img src="#avatar"></a>'
+        + '<h2><a href="https://github.com/#username">#fullname</a></h2>'
+        + '<p><a href="https://github.com/#username"">@#username</a></p>'
+        + '<a class="button" href="https://github.com/#username">Follow</a>'
+    + '</div>'
+    + '<div class="content">'
       + '<ul class="status">'
-      + '<li><a href="https://github.com/#username?tab=repositories"><strong>#repos</strong>Repos</a></li>'
-      + '<li><a href="https://gist.github.com/#username"><strong>#gists</strong>Gists</a></li>'
-      + '<li><a href="https://github.com/#username/followers"><strong>#followers</strong>Followers</a></li>'
+        + '<li><a href="https://github.com/#username?tab=repositories"><strong>#repos</strong>Repos</a></li>'
+        + '<li><a href="https://gist.github.com/#username"><strong>#gists</strong>Gists</a></li>'
+        + '<li><a href="https://github.com/#username/followers"><strong>#followers</strong>Followers</a></li>'
       + '</ul>'
-      + '<div class="footer">#footer</a></div>'
-      + '</div>';
+    + '</div>'
+    + '<div class="footer">#footer</div>';
+
     jsonp(url, function(response) {
       var data = response.data || {};
       var message = data.message;
@@ -138,26 +141,22 @@
 
   function repoCard(user, repo) {
     var url = baseurl + 'repos/' + user + '/' + repo;
-    var template = '<div class="github-card repo-card">'
-      + '<div class="header">'
-      + '<a class="avatar" href="https://github.com/#username">'
-      + '<img src="#avatar"></a>'
-      + '<strong class="name">'
-      + '<a href="https://github.com/#username/#repo">#repo</a>'
-      + '<sup class="language">#language</sup></strong>'
-      + '<span>#action by <a href="https://github.com/#username"">#username</a></span>'
+    var template =
+      '<div class="header">'
+      + '<a class="avatar" href="https://github.com/#username"><img src="#avatar"></a>'
+      + '<h2><a href="https://github.com/#username/#repo">#repo</a>'
+      + '<sup class="language">#language</sup></h2>'
+      + '<p>#action by <a href="https://github.com/#username"">#username</a></p>'
       + '<a class="button" href="https://github.com/#username/#repo">Star</a>'
-      + '</div>'
-      + '<div class="content">'
+    + '</div>'
+    + '<div class="content">'
       + '<p>#description#homepage</p>'
-      + '</div>'
-      + '<div class="footer">'
-      + '<span class="status">'
-      + '<strong>#forks</strong> Forks'
-      + '</span>'
-      + '<span class="status">'
-      + '<strong>#stars</strong> Stars'
-      + '</span></div></div>';
+    + '</div>'
+    + '<div class="footer">'
+      + '<span class="status"><strong>#forks</strong> Forks</span>'
+      + '<span class="status"><strong>#stars</strong> Stars</span>'
+    + '</div>';
+
     jsonp(url, function(response) {
       var data = response.data || {};
       var message = data.message;
