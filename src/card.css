@@ -5,12 +5,15 @@ body {
   font-family: "Helvetica Nenu", Hevetica, Arial, sans-serif;
   overflow: hidden;
 }
+
 body.ready {
   border: 1px solid #eee;
   border-radius: 5px;
   border-color: #eee #ddd #bbb;
   box-shadow: rgba(0, 0, 0, 0.14) 0px 1px 3px;
 }
+
+/* Globals */
 
 .github-card {
   border-radius: 5px;
@@ -32,7 +35,49 @@ body.ready {
 
 .github-card .header {
   position: relative;
+  padding: 3px 0 4px 57px;
 }
+
+.github-card .header h2,
+.github-card .header h2 a{
+  color: #292f33;
+  font-size: 18px;
+  margin: 0;
+}
+
+.github-card .header p{
+  margin: 0;
+  padding: 0;
+}
+
+.github-card .header a {
+  color: #707070;
+}
+
+.github-card .header sup {
+  font-size: 10px;
+  margin-left: 3px;
+  color: #797979;
+}
+
+.github-card .avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+}
+
+.github-card .avatar img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  border-radius: 4px;
+}
+
 .github-card .button {
   position: absolute;
   top: 0;
@@ -51,6 +96,7 @@ body.ready {
   background-image: -ms-linear-gradient(#fafafa, #eaeaea);
   background-image: linear-gradient(#fafafa, #eaeaea);
 }
+
 .github-card .button:hover {
   color: #fff;
   text-decoration: none;
@@ -63,7 +109,37 @@ body.ready {
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 }
 
-/* u card */
+.github-card .content p {
+  margin: 4px 5px 0 0;
+  font: 18px/24px Georgia, "Times New Roman", Palatino, serif;
+  overflow: hidden;
+  clear: both;
+  word-wrap: break-word;
+}
+
+.github-card .footer {
+  border-top: 1px solid #eee;
+  padding: 8px 0 0 0;
+}
+
+.github-card .footer a {
+  color: #646464;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.github-card .footer .status {
+  font-size: 10px;
+  margin-right: 6px;
+  text-transform: uppercase;
+}
+
+.github-card .footer .status strong {
+  font-size: 12px;
+}
+
+/* User Card */
+
 .user-card .header {
   padding: 3px 0 4px 57px;
   min-height: 48px;
@@ -86,112 +162,35 @@ body.ready {
   border-top: 1px solid #eee;
   zoom: 1;
 }
+
 .user-card ul:after {
   display: block;
   content: '';
   clear: both;
 }
+
 .user-card .status a {
   color: #707070;
   text-decoration: none;
 }
+
 .user-card .status a:hover {
   color: #4183c4;
 }
+
 .user-card .status li {
   float: left;
   padding: 4px 18px;
   border-left: 1px solid #eee;
 }
+
 .user-card .status li:first-child {
   border-left: 0;
   padding-left: 0;
 }
-/*.u-card .footer {
 
-  padding: 11px 0 10px;
-  color: #646464;
-}*/
-.github-card .footer a {
-  color: #646464;
-  font-size: 12px;
-  font-weight: 700;
-}
+/* Repo Card */
 
-/* repo card */
-.github-card .header {
-  padding: 3px 0 4px 57px;
-}
-
-.github-card .avatar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 48px;
-  height: 48px;
-}
-
-.github-card .avatar img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 48px;
-  height: 48px;
-  background: #fff;
-  border-radius: 4px;
-}
-.github-card .header a {
-  color: #707070;
-}
-.github-card .header strong {
-  display: block;
-  font-size: 18px;
-  /*line-height: 23px;*/
-}
-.github-card .header strong a {
-  color: #292f33;
-}
-.github-card .header sup {
-  font-size: 10px;
-  margin-left: 3px;
-  color: #797979;
-}
 .repo-card .content {
   padding: 6px 0 10px;
-}
-.github-card .content p {
-  margin: 4px 5px 0 0;
-  font: 18px/24px Georgia, "Times New Roman", Palatino, serif;
-  overflow: hidden;
-  clear: both;
-  word-wrap: break-word;
-}
-.github-card .footer {
-  border-top: 1px solid #eee;
-  padding: 8px 0 0 0;
-}
-.github-card .footer .status {
-  font-size: 10px;
-  margin-right: 6px;
-  text-transform: uppercase;
-}
-.github-card .footer .status strong {
-  font-size: 12px;
-}
-
-
-
-
-
-
-.github-card .header h2,
-.github-card .header h2 a{
-  color: #292f33;
-  font-size: 18px;
-  margin: 0;
-}
-
-.github-card .header p{
-  margin: 0;
-  padding: 0;
 }
