@@ -29,7 +29,34 @@
     }
   }
 
+  function valueof(data, key) {
+    var ret = data;
+    var bits = key.split('.');
+    for (var j = 0; j < bits.length; j++) {
+      if (ret) {
+        ret = ret[bits[j]];
+      } else {
+        break;
+      }
+    }
+    if (ret === undefined) {
+      ret = '';
+    }
+    return ret;
+  }
+
   var qs = querystring();
+
+  function template(type, data) {
+    var t = d.getElementById(type + '-card');
+    var regex = /{([^}]+)}/g;
+    var text = t.innerHTML;
+    var m = text.match(regex);
+    for (i = 0; i < m.length; i++) {
+      text = text.replace(m[i], valueof(data, m[i].slice(1, -1)));
+    }
+    return text;
+  }
 
   var jsonpfunc = 'ghcard' + new Date().valueOf();
 
@@ -83,20 +110,6 @@
 
   function userCard(user) {
     var url = baseurl + 'users/' + user;
-    var template = '<div class="header">'
-      + '<a class="avatar" href="https://github.com/#username">'
-      + '<img src="#avatar">'
-      + '<strong>#fullname</strong>'
-      + '<span>@#username</span></a>'
-      + '<a class="button" href="https://github.com/#username">Follow</a>'
-      + '</div>'
-      + '<ul class="status">'
-      + '<li><a href="https://github.com/#username?tab=repositories"><strong>#repos</strong>Repos</a></li>'
-      + '<li><a href="https://gist.github.com/#username"><strong>#gists</strong>Gists</a></li>'
-      + '<li><a href="https://github.com/#username/followers"><strong>#followers</strong>Followers</a></li>'
-      + '</ul>'
-      + '<div class="footer">#footer</a></div>'
-      + '</div>';
     jsonp(url, function(response) {
       var data = response.data || {};
       var message = data.message;
@@ -107,13 +120,12 @@
       } else {
         store(url, data);
       }
-      template = template.replace(/#username/g, user);
-      template = template.replace('#avatar', data.avatar_url || '');
-      template = template.replace('#fullname', data.name || user);
-      template = template.replace('#repos', data.public_repos || defaults);
-      template = template.replace('#gists', data.public_gists || defaults);
-      template = template.replace('#followers', data.followers || defaults);
-      var footer = 'Not available for hire.';
+      data.login = user;
+      data.public_repos = data.public_repos || defaults;
+      data.public_gists = data.public_gists || defaults;
+      data.followers = data.followers || defaults;
+
+      var job = 'Not available for hire.';
       if (data.hireable) {
         var link = ''
         if (data.email) {
@@ -123,41 +135,22 @@
         } else {
           link = data.html_url;
         }
-        footer = '<a href="' + link + '">Available for hire.</a>';
+        job = '<a href="' + link + '">Available for hire.</a>';
       }
       if (message) {
-        footer = message;
+        job = message;
       }
-      template = template.replace('#footer', footer);
+      data.job = job;
+
       var card = d.createElement('div');
       card.className = 'github-card user-card';
-      card.innerHTML = template;
+      card.innerHTML = template('user', data);
       linky(card);
     });
   }
 
   function repoCard(user, repo) {
     var url = baseurl + 'repos/' + user + '/' + repo;
-    var template = '<div class="github-card repo-card">'
-      + '<div class="header">'
-      + '<a class="avatar" href="https://github.com/#username">'
-      + '<img src="#avatar"></a>'
-      + '<strong class="name">'
-      + '<a href="https://github.com/#username/#repo">#repo</a>'
-      + '<sup class="language">#language</sup></strong>'
-      + '<span>#action by <a href="https://github.com/#username"">#username</a></span>'
-      + '<a class="button" href="https://github.com/#username/#repo">Star</a>'
-      + '</div>'
-      + '<div class="content">'
-      + '<p>#description#homepage</p>'
-      + '</div>'
-      + '<div class="footer">'
-      + '<span class="status">'
-      + '<strong>#forks</strong> Forks'
-      + '</span>'
-      + '<span class="status">'
-      + '<strong>#stars</strong> Stars'
-      + '</span></div></div>';
     jsonp(url, function(response) {
       var data = response.data || {};
       var message = data.message;
@@ -168,20 +161,18 @@
       } else {
         store(url, data);
       }
-      template = template.replace(/#username/g, user);
-      template = template.replace(/#repo/g, repo);
-      var avatar = '';
+      data.login = user;
+
+      data.avatar_url = '';
       if (data.owner && data.owner.avatar_url) {
-        avatar = data.owner.avatar_url;
+        data.avatar_url = data.owner.avatar_url;
       }
-      template = template.replace('#avatar', avatar);
-      template = template.replace('#language', data.language || '');
-      template = template.replace('#forks', data.forks_count || defaults);
-      template = template.replace('#stars', data.watchers_count || defaults);
+      data.forks_count = data.forks_count || defaults;
+      data.watchers_count = data.watchers_count || defaults;
       if (data.fork) {
-        template = template.replace('#action', 'Forked');
+        data.action = 'Forked';
       } else {
-        template = template.replace('#action', 'Created');
+        data.action = 'Created';
       }
       var description = data.description;
       if (!description && data.source) {
@@ -190,19 +181,20 @@
       if (!description && message) {
         description = message;
       }
-      template = template.replace('#description', description || 'No description.');
+      data.description = description || 'No description';
       var homepage = data.homepage;
       if (!homepage && data.source) {
         homepage = data.source.homepage;
       }
       if (homepage) {
-        homepage = ' <a href="' + homepage + '">' + homepage.replace(/https?:\/\//, '') + '</a>';
+        data.homepage = ' <a href="' + homepage + '">' + homepage.replace(/https?:\/\//, '') + '</a>';
+      } else {
+        data.homepage = '';
       }
-      template = template.replace('#homepage', homepage || '');
 
       var card = d.createElement('div');
       card.className = 'github-card repo-card';
-      card.innerHTML = template;
+      card.innerHTML = template('repo', data);
       linky(card);
     });
   }
