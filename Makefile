@@ -15,8 +15,8 @@ widget:
 
 develop:
 	@echo '<!doctype html><html><body>' > card.html
-	@echo '<link rel="stylesheet" href="theme/default.css">' >> card.html
-	@cat theme/default.html >> card.html
+	@echo '<link rel="stylesheet" href="theme/${theme}.css">' >> card.html
+	@cat theme/${theme}.html >> card.html
 	@echo '<script src="src/card.js"></script>' >> card.html
 	@echo '</body></html>' >> card.html
 
