@@ -47,12 +47,20 @@
 
   function render(card, baseurl) {
     var user = querydata(card, 'user');
+    var repo = querydata(card, 'repo');
+    var github = querydata(card, 'github');
+    if (github) {
+      github = github.split('/');
+      if (github.length && !user) {
+        user = github[0];
+        repo = repo || github[1];
+      }
+    }
     if (!user) {
       return;
     }
-    count += 1;
 
-    var repo = querydata(card, 'repo');
+    count += 1;
     var width = querydata(card, 'width');
     var height = querydata(card, 'height');
     var target = querydata(card, 'target');
