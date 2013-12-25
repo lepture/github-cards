@@ -7,11 +7,11 @@ card:
 	@echo '</style>' >> card.html
 	@cat theme/${theme}.html >> card.html
 	@echo '<script>' >> card.html
-	@uglifyjs src/card.js >> card.html
+	@uglifyjs src/card.js -m >> card.html
 	@echo '</script></body></html>' >> card.html
 
 widget:
-	@uglifyjs src/widget.js -o widget.js
+	@uglifyjs src/widget.js -m -o widget.js
 
 develop:
 	@echo '<!doctype html><html><body>' > card.html
