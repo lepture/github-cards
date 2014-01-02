@@ -3,14 +3,14 @@
   var i, count = 0;
 
   var metas = d.getElementsByTagName('meta');
-  var baseurl = 'http://lab.lepture.com/github-cards/card.html'
+  var baseurl = 'http://lab.lepture.com/github-cards/card.html';
   var client_id, client_secret;
   for (i = 0; i < metas.length; i++) {
-    if (metas[i].getAttribute('name') == 'gc:url') {
+    if (metas[i].getAttribute('name') === 'gc:url') {
       baseurl = metas[i].getAttribute('content');
-    } else if (metas[i].getAttribute('name') == 'gc:client-id') {
+    } else if (metas[i].getAttribute('name') === 'gc:client-id') {
       client_id = metas[i].getAttribute('content');
-    } else if (metas[i].getAttribute('name') == 'gc:client-secret') {
+    } else if (metas[i].getAttribute('name') === 'gc:client-secret') {
       client_secret = metas[i].getAttribute('content');
     }
   }
@@ -36,10 +36,8 @@
   function heighty(iframe) {
     if (window.addEventListener) {
       window.addEventListener('message', function(e) {
-        if (~iframe.src.indexOf(e.origin)) {
-          if (iframe.id === e.data.sender) {
-            iframe.height = e.data.height;
-          }
+        if (iframe.id === e.data.sender) {
+          iframe.height = e.data.height;
         }
       }, false);
     }
