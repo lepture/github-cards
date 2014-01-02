@@ -70,7 +70,7 @@
     }
     window[jsonpfunc] = function(response) {
       callback(response);
-    }
+    };
     var script = d.createElement('script');
     url += '?callback=' + jsonpfunc;
     if (qs.client_id && qs.client_secret) {
@@ -79,7 +79,7 @@
     script.src = url;
     script.onload = function() {
       d.body.removeChild(script);
-    }
+    };
     d.body.appendChild(script);
   }
 
@@ -127,7 +127,7 @@
 
       var job = 'Not available for hire.';
       if (data.hireable) {
-        var link = ''
+        var link = '';
         if (data.email) {
           link = 'mailto:' + data.email;
         } else if (data.blog) {
