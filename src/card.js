@@ -39,8 +39,8 @@
         break;
       }
     }
-    if (ret === undefined) {
-      ret = '';
+    if (ret === undefined || ret === null) {
+      return '';
     }
     return ret;
   }
