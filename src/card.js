@@ -170,9 +170,9 @@
       data.forks_count = data.forks_count || defaults;
       data.watchers_count = data.watchers_count || defaults;
       if (data.fork) {
-        data.action = 'Forked';
+        data.action = 'Forked by ';
       } else {
-        data.action = 'Created';
+        data.action = 'Created by ';
       }
       var description = data.description;
       if (!description && data.source) {
