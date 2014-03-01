@@ -85,7 +85,7 @@
       url += '&client_id=' + key + '&client_secret=' + secret;
     }
     iframe.src = url;
-    iframe.width = width || Math.min(d.body.clientWidth || 400, 400);
+    iframe.width = width || Math.min(card.parentNode.clientWidth || 400, 400);
     if (height) {
       iframe.height = height;
     }
