@@ -178,10 +178,10 @@ body.ready {
 }
 .repo-card .status {
   font-size: 10px;
-  margin-right: 6px;
+  padding-right: 10px;
   text-transform: uppercase;
 }
 .repo-card .status strong {
   font-size: 12px;
-  margin-right: 1px;
+  padding-right: 5px;
 }
