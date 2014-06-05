@@ -3,11 +3,11 @@
   var i, count = 0;
 
   var metas = d.getElementsByTagName('meta');
-  var baseurl = 'http://lab.lepture.com/github-cards/card.html';
+  var BASEURL = 'http://lab.lepture.com/github-cards/card.html';
   var client_id, client_secret;
   for (i = 0; i < metas.length; i++) {
     if (metas[i].getAttribute('name') === 'gc:url') {
-      baseurl = metas[i].getAttribute('content');
+      BASEURL = metas[i].getAttribute('content');
     } else if (metas[i].getAttribute('name') === 'gc:client-id') {
       client_id = metas[i].getAttribute('content');
     } else if (metas[i].getAttribute('name') === 'gc:client-secret') {
@@ -44,6 +44,7 @@
   }
 
   function render(card, baseurl) {
+    baseurl = baseurl || BASEURL;
     var user = querydata(card, 'user');
     var repo = querydata(card, 'repo');
     var github = querydata(card, 'github');
@@ -96,7 +97,7 @@
 
   var cards = queryclass('github-card');
   for (i = 0; i < cards.length; i++) {
-    render(cards[i], baseurl);
+    render(cards[i]);
   }
 
   if (window.githubCard) {
