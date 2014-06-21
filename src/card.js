@@ -58,9 +58,7 @@
     return text;
   }
 
-  var jsonpfunc = 'ghcard' + new Date().valueOf();
-
-  function jsonp(url, callback) {
+  function request(url, callback) {
     var cache = store(url);
     if (cache && cache._timestamp) {
       // cache in 10s
@@ -68,19 +66,15 @@
         return callback({data: cache});
       }
     }
-    window[jsonpfunc] = function(response) {
-      callback(response);
-    };
-    var script = d.createElement('script');
-    url += '?callback=' + jsonpfunc;
     if (qs.client_id && qs.client_secret) {
-      url += '&client_id=' + qs.client_id + '&client_secret=' + qs.client_secret;
+      url += '?client_id=' + qs.client_id + '&client_secret=' + qs.client_secret;
     }
-    script.src = url;
-    script.onload = function() {
-      d.body.removeChild(script);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.onload = function() {
+      callback(JSON.parse(xhr.response));
     };
-    d.body.appendChild(script);
+    xhr.send();
   }
 
   function linky(card, identity) {
@@ -110,8 +104,8 @@
 
   function userCard(user) {
     var url = baseurl + 'users/' + user;
-    jsonp(url, function(response) {
-      var data = response.data || {};
+    request(url, function(data) {
+      data = data || {};
       var message = data.message;
       var defaults = '0';
       if (message) {
@@ -151,8 +145,8 @@
 
   function repoCard(user, repo) {
     var url = baseurl + 'repos/' + user + '/' + repo;
-    jsonp(url, function(response) {
-      var data = response.data || {};
+    request(url, function(data) {
+      data = data || {};
       var message = data.message;
       var defaults = '0';
       if (message) {
