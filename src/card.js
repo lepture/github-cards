@@ -63,7 +63,7 @@
     if (cache && cache._timestamp) {
       // cache in 10s
       if (new Date().valueOf() - cache._timestamp < 10000) {
-        return callback({data: cache});
+        return callback(cache);
       }
     }
     if (qs.client_id && qs.client_secret) {
