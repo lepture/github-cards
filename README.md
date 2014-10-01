@@ -46,7 +46,7 @@ Additional parameters:
 
 client_id and client_secret can increase your API rate: http://developer.github.com/v3/#unauthenticated-rate-limited-requests
 
-But it is not suggested to do such thing.
+But it is not suggested to do such thing, because expose your client_secret to public is unsafe.
 
 ### widget.js
 
