@@ -35,7 +35,7 @@ body.ready {
 .github-card .button {
   position: absolute;
   top: 0;
-  right: 8px;
+  right: 0;
   padding: 4px 8px 4px 7px;
   color: #555;
   text-shadow: 0 1px 0 #fff;
