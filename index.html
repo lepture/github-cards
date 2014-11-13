@@ -3,7 +3,6 @@
   <head>
     <title>GitHub Cards</title>
     <link rel="stylesheet" href="site.css">
-    <meta name="gc:url" content="card.html">
     <meta name="gc:client-id" content="a11a1bda412d928fb39a">
     <meta name="gc:client-secret" content="92b7cf30bc42c49d589a10372c3f9ff3bb310037">
     <script type="text/javascript">
@@ -43,6 +42,13 @@
       <div class="howto">
         <h2>How to Use</h2>
         <div class="howto-section">
+          <div class="howto-theme">
+            <label for="howto-select">Theme</label>
+            <select id="howto-select" name="name">
+              <option value="default">default</option>
+              <option value="medium">medium</option>
+            </select>
+          </div>
           <input id="howto-input" type="text" placeholder="username or username/repo">
         </div>
         <div class="howto-section" id="howto-preview">
@@ -56,6 +62,6 @@
       </div>
     </div>
     <script src="site.js"></script>
-    <script src="src/widget.js"></script>
+    <script src="widget.js"></script>
   </body>
 </html>
