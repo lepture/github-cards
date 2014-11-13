@@ -89,7 +89,9 @@ body.ready {
 .github-card .status a:hover {
   color: #4183c4;
 }
-
+.user-card .Organization {
+  background-color: #00b26e;
+}
 .user-card .avatar {
   margin-top: -40px;
   border: 3px solid #fff;
