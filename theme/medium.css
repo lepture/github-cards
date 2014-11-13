@@ -22,17 +22,6 @@ body.ready {
 
 .github-card .header {
   position: relative;
-}
-.github-card h1 {
-  color: #111;
-  font-size: 24px;
-  font-weight: 500;
-  text-decoration: none;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* user card */
-.user-card .header {
   padding: 0;
   margin: 0;
   height: 148px;
@@ -42,41 +31,28 @@ body.ready {
   background-color: #000;
 }
 
-.user-card .avatar {
-  margin-top: -40px;
+.github-card .avatar {
   display: inline-block;
   overflow: hidden;
   background: #fff;
   border-radius: 100%;
-  border: 3px solid #fff;
   box-shadow: 0 1px 1px rgba(0,0,0,0.3);
   text-decoration: none;
-  position: relative;
   -webkit-transition: -webkit-transform .2s ease-in-out;
 }
-.user-card .avatar:hover {
+.github-card .avatar:hover {
   -webkit-transform: rotate(45deg);
 }
-.user-card img {
-  display: block;
-  width: 80px;
-  height: 80px;
+
+.github-card h1 {
+  color: #111;
+  font-size: 24px;
+  font-weight: 500;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
 }
 
-.user-card h1 {
-  letter-spacing: -0.06em;
-  margin: 16px 0 20px;
-  line-height: 1;
-}
-
-.user-card strong {
-  display: block;
-  color: #292f33;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.user-card ul {
+.github-card ul {
   text-transform: uppercase;
   font-size: 12px;
   color: #707070;
@@ -87,86 +63,113 @@ body.ready {
   border-bottom: 1px solid #eee;
   zoom: 1;
 }
-.user-card ul:after {
+.github-card ul:after {
   display: block;
   content: '';
   clear: both;
 }
-.user-card .status a {
-  color: #707070;
-  text-decoration: none;
-}
-.user-card .status a:hover {
-  color: #4183c4;
-}
-.user-card .status li {
+.github-card .status li {
   float: left;
   padding: 8px 0;
   box-shadow: 1px 0 0 #eee;
-  width: 33%;
 }
-.user-card .status li:last-of-type {
+.github-card .status li:last-of-type {
   box-shadow: none;
 }
-.user-card .footer {
-  font-size: 12px;
-  font-weight: 700;
-  padding: 11px 0 10px;
-  color: #646464;
+.github-card .status strong {
+  display: block;
+  color: #292f33;
+  font-size: 16px;
+  line-height: 1.6;
 }
-.user-card .footer a {
-  color: #646464;
+.github-card .status a {
+  color: #707070;
+  text-decoration: none;
+}
+.github-card .status a:hover {
+  color: #4183c4;
+}
+
+.user-card .avatar {
+  margin-top: -40px;
+  border: 3px solid #fff;
+  position: relative;
+}
+.user-card img {
+  display: block;
+  width: 80px;
+  height: 80px;
+}
+.user-card h1 {
+  letter-spacing: -0.06em;
+  margin: 16px 0 20px;
+  line-height: 1;
+}
+.user-card .status li {
+  width: 33%;
 }
 
 /* repo card */
-.repo-card .header {
-  padding: 3px 0 4px 57px;
-}
-.repo-card .avatar, .repo-card .avatar img {
+.repo-card .avatar {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
+  border: 2px solid #fff;
+}
+.repo-card .avatar img {
+  display: block;
   width: 48px;
   height: 48px;
-  background: #fff;
-  border-radius: 4px;
 }
-.repo-card .header a {
-  color: #707070;
-}
-.repo-card .header strong {
-  display: block;
-  font-size: 18px;
-  line-height: 1.4;
-}
-.repo-card .header strong a {
-  color: #292f33;
-}
-.repo-card .header sup {
-  font-size: 10px;
-  margin-left: 3px;
-  color: #797979;
-}
-.repo-card .content {
-  padding: 6px 0 10px;
-}
-.repo-card .content p {
-  margin: 0 5px 0 0;
-  font: 18px/24px Georgia, "Times New Roman", Palatino, serif;
-  overflow: hidden;
-  clear: both;
-  word-wrap: break-word;
-}
-.repo-card .footer {
-  border-top: 1px solid #eee;
-  padding: 8px 0 6px;
-}
-.repo-card .status {
-  font-size: 10px;
-  padding-right: 10px;
+.repo-card h1 {
+  margin: 0;
+  padding: 0;
+  line-height: 148px;
+  color: white;
+  font-size: 36px;
+  font-weight: 400;
   text-transform: uppercase;
 }
-.repo-card .status strong {
-  font-size: 12px;
-  padding-right: 5px;
+.repo-card h1 a {
+  color: white;
+  text-decoration: none;
+}
+.repo-card h1 a:hover {
+  opacity: 0.8;
+}
+.repo-card .content p {
+  font-size: 16px;
+  padding: 10px 20px;
+}
+.repo-card p a {
+  text-decoration: none;
+  color: #4183c4;
+  outline: 0;
+}
+.repo-card .status li {
+  width: 50%;
+}
+.repo-card .C {
+  background: #555;
+}
+.repo-card .CSS {
+  background: #563d7c;
+}
+.repo-card .JavaScript {
+  background: #f1e05a;
+}
+.repo-card .Python {
+  background: #3581ba;
+}
+.repo-card .Ruby {
+  background: #701516;
+}
+.repo-card .Rust {
+  background: #dea584;
+}
+.repo-card .Go {
+  background: #375eab;
+}
+.repo-card .Java {
+  background: #b07219;
 }

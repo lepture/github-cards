@@ -10,3 +10,18 @@
     </ul>
   </div>
 </script>
+
+<script id="repo-card" type="text/template">
+  <div class="header {language}">
+    <a class="avatar" href="https://github.com/{login}">
+      <img src="{avatar_url}&s=48" alt="{login}"></a>
+    <h1><a href="https://github.com/{full_name}">{name}</a></h1>
+  </div>
+  <div class="content">
+    <p>{description}{homepage}</p>
+    <ul class="status">
+      <li><a href="https://github.com/{full_name}/network"><strong>{forks_count}</strong>Forks</a></li>
+      <li><a href="https://github.com/{full_name}/stargazers"><strong>{watchers_count}</strong>Stars</a></li>
+    </ul>
+  </div>
+</script>
