@@ -181,7 +181,7 @@
         homepage = data.source.homepage;
       }
       if (homepage) {
-        data.homepage = ' <a href="' + homepage + '">' + homepage.replace(/https?:\/\//, '') + '</a>';
+        data.homepage = ' <a href="' + homepage + '">' + homepage.replace(/https?:\/\//, '').replace(/\/$/, '') + '</a>';
       } else {
         data.homepage = '';
       }
