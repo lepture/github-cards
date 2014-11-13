@@ -7,7 +7,7 @@
   var i, count = 0;
 
   var metas = d.getElementsByTagName('meta');
-  var client_url, client_id, client_secret;
+  var client_url, client_id, client_secret, client_theme;
   for (i = 0; i < metas.length; i++) {
     if (metas[i].getAttribute('name') === 'gc:url') {
       client_url = metas[i].getAttribute('content');
@@ -15,6 +15,8 @@
       client_id = metas[i].getAttribute('content');
     } else if (metas[i].getAttribute('name') === 'gc:client-secret') {
       client_secret = metas[i].getAttribute('content');
+    } else if (metas[i].getAttribute('name') === 'gc:theme') {
+      client_theme = metas[i].getAttribute('content');
     }
   }
 
@@ -49,7 +51,7 @@
   function render(card, baseurl) {
     baseurl = baseurl || client_url;
     if (!baseurl) {
-      var theme = querydata(card, 'theme') || 'default';
+      var theme = querydata(card, 'theme') || client_theme || 'default';
       baseurl = base + 'cards/' + theme + '.html';
     }
     var user = querydata(card, 'user');
