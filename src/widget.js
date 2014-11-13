@@ -9,14 +9,18 @@
   var metas = d.getElementsByTagName('meta');
   var client_url, client_id, client_secret, client_theme;
   for (i = 0; i < metas.length; i++) {
-    if (metas[i].getAttribute('name') === 'gc:url') {
-      client_url = metas[i].getAttribute('content');
-    } else if (metas[i].getAttribute('name') === 'gc:client-id') {
-      client_id = metas[i].getAttribute('content');
-    } else if (metas[i].getAttribute('name') === 'gc:client-secret') {
-      client_secret = metas[i].getAttribute('content');
-    } else if (metas[i].getAttribute('name') === 'gc:theme') {
-      client_theme = metas[i].getAttribute('content');
+    var n = metas[i].getAttribute('name');
+    var c = metas[i].getAttribute('content');
+    if (n === 'gc:url') {
+      client_url = c;
+    } else if (n === 'gc:base') {
+      base = c;
+    } else if (n === 'gc:client-id') {
+      client_id = c;
+    } else if (n === 'gc:client-secret') {
+      client_secret = c;
+    } else if (n === 'gc:theme') {
+      client_theme = c;
     }
   }
 
