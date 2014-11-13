@@ -6,47 +6,16 @@ Vote it on HackerNews: https://news.ycombinator.com/item?id=6545172
 
 ![GitHub Cards Preview](https://f.cloud.github.com/assets/290496/1350967/28069848-3716-11e3-8f87-0bef45aff1c4.png)
 
+**New theme available**
+
+![GitHub Cards Medium Theme](https://cloud.githubusercontent.com/assets/290496/5024776/7267e9c8-6b4a-11e4-9513-472b60b955b1.png)
+
+
 ## Usage
 
 The cards are hosted via GitHub Pages.
 
 Visit card generator: http://lab.lepture.com/github-cards/
-
-### iframe
-
-You can embed it with iframes.
-
-Example of user card:
-
-```html
-<iframe src="http://lab.lepture.com/github-cards/card.html?user=USERNAME" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
-```
-
-Example of repo card:
-
-```html
-<iframe src="http://lab.lepture.com/github-cards/card.html?user=USERNAME&repo=REPOSITORY" frameborder="0" scrolling="0" width="400" height="200" allowtransparency></iframe>
-```
-
-The iframe accepts two parameters: `user` and `repo`.
-
-If `repo` is in the querystring, it will be a repo card, otherwise it is
-a user card.
-
-You need to find the perfect width and height yourself.
-
-Additional note: if you want to open links in new tab, add parameter
-`target=blank`.
-
-Additional parameters:
-
-- target: if target=blank, links will be opened in a new tab.
-- client_id: your app client_id
-- client_secret: your app client_secret
-
-client_id and client_secret can increase your API rate: http://developer.github.com/v3/#unauthenticated-rate-limited-requests
-
-But it is not suggested to do such thing.
 
 ### widget.js
 
@@ -73,6 +42,7 @@ Data parameters:
 - repo: GitHub repository name
 - width: Embed width you want, default is 400
 - height: Embed height you want, default is 200
+- theme: GitHub card theme, default is `default`
 - target: If you want to open links in new tab, set it to `blank`
 - client_id: Your app client_id, optional
 - client_secret: Your app client_secret, optional
@@ -80,6 +50,7 @@ Data parameters:
 You can also define in meta tags:
 
 ```html
+<meta name="gc:theme" content="medium">
 <meta name="gc:client-id" content="client id string">
 <meta name="gc:client-secret" content="client secret string">
 ```
@@ -95,9 +66,3 @@ There are some limitations for github cards.
 ## Contribution
 
 This project is under the BSD License.
-
-Here are some tips on contribution:
-
-- Don't modify card.html, it is generated with src/card.js and src/card.css.
-- Don't generate card.html yourself.
-- Don't change the gh-pages branch.
