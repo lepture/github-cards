@@ -1,14 +1,9 @@
-theme = default
+theme = medium
 
-card:
-	@echo '<!doctype html><html><body>' > card.html
-	@echo '<style type="text/css">' >> card.html
-	@cleancss theme/${theme}.css >> card.html
-	@echo '</style>' >> card.html
-	@cat theme/${theme}.html >> card.html
-	@echo '<script>' >> card.html
-	@uglifyjs src/card.js -m >> card.html
-	@echo '</script></body></html>' >> card.html
+cards:
+	@mkdir -p cards
+	@./generate.py default > cards/default.html
+	@./generate.py medium > cards/medium.html
 
 widget:
 	@uglifyjs src/widget.js -m -o widget.js
@@ -20,7 +15,16 @@ develop:
 	@echo '<script src="src/card.js"></script>' >> card.html
 	@echo '</body></html>' >> card.html
 
+site: cards widget
+	@rm -fr _site
+	@mkdir -p _site
+	@mv widget.js _site/
+	@cp index.html site.js site.css _site/
+	@mv cards _site/
 
-build: card widget
+publish: _site
+	@ghp-import _site -p -n
 
-.PHONY: card widget build
+build: cards widget
+
+.PHONY: cards widget build

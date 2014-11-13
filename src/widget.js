@@ -1,13 +1,16 @@
 (function(d) {
 
+  var scripts = document.getElementsByTagName("script");
+  var src = scripts[scripts.length-1].src;
+  var base = src.replace(/\/[^\/]+\.js$/, '/');
+
   var i, count = 0;
 
   var metas = d.getElementsByTagName('meta');
-  var BASEURL = 'http://lab.lepture.com/github-cards/card.html';
-  var client_id, client_secret;
+  var client_url, client_id, client_secret;
   for (i = 0; i < metas.length; i++) {
     if (metas[i].getAttribute('name') === 'gc:url') {
-      BASEURL = metas[i].getAttribute('content');
+      client_url = metas[i].getAttribute('content');
     } else if (metas[i].getAttribute('name') === 'gc:client-id') {
       client_id = metas[i].getAttribute('content');
     } else if (metas[i].getAttribute('name') === 'gc:client-secret') {
@@ -44,7 +47,11 @@
   }
 
   function render(card, baseurl) {
-    baseurl = baseurl || BASEURL;
+    baseurl = baseurl || client_url;
+    if (!baseurl) {
+      var theme = querydata(card, 'theme') || 'default';
+      baseurl = base + 'cards/' + theme + '.html';
+    }
     var user = querydata(card, 'user');
     var repo = querydata(card, 'repo');
     var github = querydata(card, 'github');
