@@ -1,8 +1,5 @@
 (function(d) {
-
-  var scripts = document.getElementsByTagName("script");
-  var src = scripts[scripts.length-1].src;
-  var base = src.replace(/\/[^\/]+\.js$/, '/');
+  var base = "http://lab.lepture.com/github-cards/";
 
   var i, count = 0;
 
@@ -52,11 +49,11 @@
     }
   }
 
-  function render(card, baseurl) {
-    baseurl = baseurl || client_url;
-    if (!baseurl) {
+  function render(card, cardurl) {
+    cardurl = cardurl || client_url;
+    if (!cardurl) {
       var theme = querydata(card, 'theme') || client_theme || 'default';
-      baseurl = base + 'cards/' + theme + '.html';
+      cardurl = base + 'cards/' + theme + '.html';
     }
     var user = querydata(card, 'user');
     var repo = querydata(card, 'repo');
@@ -88,7 +85,7 @@
     iframe.setAttribute('scrolling', 0);
     iframe.setAttribute('allowtransparency', true);
 
-    var url = baseurl + '?user=' + user + '&identity=' + identity;
+    var url = cardurl + '?user=' + user + '&identity=' + identity;
     if (repo) {
       url += '&repo=' + repo;
     }
