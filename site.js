@@ -2,6 +2,7 @@
 function githubCard() {
   var d = document, timer;
   var input = d.getElementById('howto-input');
+  var select = d.getElementById('howto-select');
 
   function preview(value) {
     if (!value) {
@@ -18,12 +19,13 @@ function githubCard() {
     }
 
     container.appendChild(card);
-    var iframe = githubCard.render(card, 'card.html');
+    var iframe = githubCard.render(card, 'cards/' + select.value + '.html');
 
     iframe.onload = function() {
       var textarea = d.getElementById('howto-code');
       card.setAttribute('data-width', iframe.width);
       card.setAttribute('data-height', iframe.height);
+      card.setAttribute('data-theme', select.value);
       var html = card.outerHTML;
       html += '\n<script src="http://lab.lepture.com/github-cards/widget.js"></script>';
       textarea.value = html;
@@ -39,6 +41,10 @@ function githubCard() {
     timer = setTimeout(function() {
       preview(input.value);
     }, 800);
+  };
+
+  select.onchange = function() {
+    preview(input.value);
   };
 
   input.onkeydown = function() {
