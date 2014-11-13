@@ -30,7 +30,7 @@ function githubCard() {
       html += '\n<script src="http://lab.lepture.com/github-cards/widget.js"></script>';
       textarea.value = html;
       if (location.hash.slice(1) !== value) {
-        location.hash = '#' + value;
+        location.hash = '#' + value + '|' + select.value;
       }
       d.documentElement.scrollTop = 630;
     };
@@ -53,7 +53,9 @@ function githubCard() {
 
   if (location.hash) {
     window.onload = function() {
-      input.value = location.hash.slice(1);
+      var bits = location.hash.slice(1).split('|');
+      input.value = bits[0];
+      select.value = bits[1] || 'default';
       preview(input.value);
     };
   }
