@@ -89,8 +89,14 @@ body.ready {
 .github-card .status a:hover {
   color: #4183c4;
 }
+.user-card .header {
+  background-image: url("https://assets-cdn.github.com/assets/modules/aws/aws-bg-80b292690ba587b305c2c038c496ffc8ff08d3bf6be6c1ba64d48bedc09cc36f.jpg");
+}
+.user-card .User {
+  background-position: top left;
+}
 .user-card .Organization {
-  background-color: #00b26e;
+  background-position: top right;
 }
 .user-card .avatar {
   margin-top: -40px;
