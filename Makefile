@@ -20,6 +20,7 @@ site: cards widget
 	@mkdir -p _site
 	@mv widget.js _site/
 	@cp index.html site.js site.css _site/
+	@cp cards/default.html _site/card.html
 	@mv cards _site/
 
 publish: _site
