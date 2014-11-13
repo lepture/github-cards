@@ -115,9 +115,9 @@
         store(url, data);
       }
       data.login = user;
-      data.public_repos = data.public_repos || defaults;
-      data.public_gists = data.public_gists || defaults;
-      data.followers = data.followers || defaults;
+      data.public_repos = numberic(data.public_repos) || defaults;
+      data.public_gists = numberic(data.public_gists) || defaults;
+      data.followers = numberic(data.followers) || defaults;
 
       var job = 'Not available for hire.';
       if (data.hireable) {
@@ -161,8 +161,8 @@
       if (data.owner && data.owner.avatar_url) {
         data.avatar_url = data.owner.avatar_url;
       }
-      data.forks_count = data.forks_count || defaults;
-      data.watchers_count = data.watchers_count || defaults;
+      data.forks_count = numberic(data.forks_count) || defaults;
+      data.watchers_count = numberic(data.watchers_count) || defaults;
       if (data.fork) {
         data.action = 'Forked by ';
       } else {
@@ -194,6 +194,15 @@
   }
 
   function errorCard() {
+  }
+
+  function numberic(num) {
+    if (!num) return null;
+    if (num === 1000) return 1;
+    if (num < 1000) return num;
+    num = num / 1000;
+    if (num > 10) return parseInt(num, 10) + 'k';
+    return num.toFixed(1) + 'k';
   }
 
   if (!qs.user) {
