@@ -15,18 +15,20 @@
   }
 
   function store(key, value) {
-    if (window.localStorage) {
-      if (value) {
-        value._timestamp = new Date().valueOf();
-        localStorage[key] = JSON.stringify(value);
-      } else {
-        var ret = localStorage[key];
-        if (ret) {
-          return JSON.parse(ret);
+    try {
+      if (window.localStorage) {
+        if (value) {
+          value._timestamp = new Date().valueOf();
+          localStorage[key] = JSON.stringify(value);
+        } else {
+          var ret = localStorage[key];
+          if (ret) {
+            return JSON.parse(ret);
+          }
+          return null;
         }
-        return null;
       }
-    }
+    } catch(e) {}
   }
 
   function valueof(data, key) {
