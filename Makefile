@@ -1,16 +1,14 @@
-cards:
+generate:
 	@mkdir -p cards
-	@./generate.py default > cards/default.html
-	@./generate.py medium > cards/medium.html
+	@./generate.py
 
-widget:
-	@uglifyjs src/widget.js -m -o widget.js
+jsdelivr:
+	@cp -r cards jsdelivr
 
-
-site: cards widget
+site: generate
 	@rm -fr _site
 	@mkdir -p _site
-	@mv widget.js _site/
+	@uglifyjs src/widget.js -m -o _site/widget.js
 	@cp index.html site.js site.css _site/
 	@cp cards/default.html _site/card.html
 	@mv cards _site/
@@ -18,6 +16,6 @@ site: cards widget
 publish: _site
 	@ghp-import _site -p -n
 
-build: cards widget
+build: generate jsdelivr site
 
-.PHONY: cards widget build
+.PHONY: build jsdelivr generate publish site
