@@ -65,7 +65,7 @@ There are some limitations for github cards.
 
 GitHub Cards is available on jsdelivr now. Use widget hosted on jsdelivr:
 
-```
+```html
 <div class="github-card" data-user="lepture" data-repo="github-cards"></div>
 <script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 ```
