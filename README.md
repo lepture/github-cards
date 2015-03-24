@@ -2,8 +2,6 @@
 
 Card for your GitHub profile, card for your GitHub repositories.
 
-Vote it on HackerNews: https://news.ycombinator.com/item?id=6545172
-
 ![GitHub Cards Preview](https://f.cloud.github.com/assets/290496/1350967/28069848-3716-11e3-8f87-0bef45aff1c4.png)
 
 **New theme available**
@@ -61,8 +59,16 @@ You can also define in meta tags:
 There are some limitations for github cards.
 
 1. GitHub API rate limitation
-2. SSL sites need to host its own cards
-3. No interaction, it can't show your following status
+2. No interaction, it can't show your following status
+
+## SSL support
+
+GitHub Cards is available on jsdelivr now. Use widget hosted on jsdelivr:
+
+```
+<div class="github-card" data-user="lepture" data-repo="github-cards"></div>
+<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+```
 
 ## Contribution
 
