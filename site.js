@@ -27,7 +27,7 @@ function githubCard() {
       card.setAttribute('data-height', iframe.height);
       card.setAttribute('data-theme', select.value);
       var html = card.outerHTML;
-      html += '\n<script src="http://lab.lepture.com/github-cards/widget.js"></script>';
+      html += '\n<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>';
       textarea.value = html;
       if (location.hash.slice(1) !== value) {
         location.hash = '#' + value + '|' + select.value;
