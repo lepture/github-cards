@@ -117,6 +117,7 @@
         store(url, data);
       }
       data.login = user;
+      data.name = escape(data.name);
       data.public_repos = numberic(data.public_repos) || defaults;
       data.public_gists = numberic(data.public_gists) || defaults;
       data.followers = numberic(data.followers) || defaults;
@@ -177,7 +178,7 @@
       if (!description && message) {
         description = message;
       }
-      data.description = description || 'No description';
+      data.description = escape(description) || 'No description';
       var homepage = data.homepage;
       if (!homepage && data.source) {
         homepage = data.source.homepage;
@@ -213,6 +214,10 @@
     repoCard(qs.user, qs.repo);
   } else {
     userCard(qs.user);
+  }
+
+  function escape(text) {
+    return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
 })(document);
