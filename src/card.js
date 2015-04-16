@@ -72,7 +72,7 @@
       url += '?client_id=' + qs.client_id + '&client_secret=' + qs.client_secret;
     }
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, false);
+    xhr.open('GET', url, true);
     xhr.onload = function() {
       callback(JSON.parse(xhr.response));
     };
