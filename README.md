@@ -1,4 +1,4 @@
-# unofficial GitHub Cards
+# Unofficial GitHub Cards
 
 Card for your GitHub profile, card for your GitHub repositories.
 
@@ -24,14 +24,14 @@ Example of user card:
 
 ```html
 <div class="github-card" data-user="lepture"></div>
-<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 ```
 
 Example of repo card:
 
 ```html
 <div class="github-card" data-user="lepture" data-repo="github-cards"></div>
-<script src="http://lab.lepture.com/github-cards/widget.js"></script>
+<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 ```
 
 Data parameters:
@@ -59,7 +59,7 @@ You can also define in meta tags:
 There are some limitations for github cards.
 
 1. GitHub API rate limitation
-2. No interaction, it can't show your following status
+2. No interaction. You can't actually follow someone
 
 ## SSL support
 
