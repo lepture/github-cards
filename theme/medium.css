@@ -163,6 +163,9 @@ body.ready {
 .repo-card .CSS {
   background: #563d7c;
 }
+.repo-card .HTML {
+  background: #e44b23;
+}
 .repo-card .JavaScript {
   background: #f1e05a;
 }
@@ -180,4 +183,7 @@ body.ready {
 }
 .repo-card .Java {
   background: #b07219;
+}
+.repo-card .Objective-C {
+  background: #438eff;
 }
