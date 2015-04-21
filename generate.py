@@ -5,6 +5,17 @@ import os
 import json
 from subprocess import Popen, PIPE
 
+GA = '''
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', '%s', 'auto');
+var t = qs.user;
+if (qs.repo) t += '/' + qs.repo;
+ga('send', 'pageview', {'title': t});
+'''
+
 
 def tinyhtml(text):
     lines = re.split('(<[^>]+>)', text)
@@ -27,17 +38,6 @@ def create_card(theme):
     with open('theme/%s.html' % theme) as f:
         template = f.read()
 
-    gaq = (
-        'var _gaq=_gaq||[];'
-        "_gaq.push(['_setAccount','%s']);"
-        "_gaq.push(['_trackPageview']);"
-        '(function(d){var g=d.createElement("script");'
-        'g.async=true;g.src="https://ssl.google-analytics.com/ga.js";'
-        'var s=d.getElementsByTagName("script")[0];'
-        's.parentNode.insertBefore(g, s);'
-        '})(document);'
-    )
-
     html = (
         '<!doctype html><html><body>'
         '<style type="text/css">%s</style>%s'
@@ -47,12 +47,13 @@ def create_card(theme):
 
     css = shell(['cleancss', 'theme/%s.css' % theme])
 
-    scripts = [
-        shell(['uglifyjs', 'src/card.js', '-m']),
-        gaq % 'UA-21475122-2',
-    ]
+    with open('src/card.js', 'rb') as f:
+        content = f.read()
+        content += GA % 'UA-21475122-2'
 
-    out = html % (css, tinyhtml(template), ''.join(scripts))
+    js = shell(['uglifyjs', '-m'], content)
+
+    out = html % (css, tinyhtml(template), js)
     with open('cards/%s.html' % theme, 'wb') as f:
         f.write(out)
 
