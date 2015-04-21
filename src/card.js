@@ -1,18 +1,20 @@
+function querystring() {
+  var href = window.location.href, kv;
+  var params = href.slice(href.indexOf('?') + 1).split('&');
+  var qs = [];
+
+  for (i = 0; i < params.length; i++) {
+    kv = params[i].split('=');
+    qs.push(kv[0]);
+    qs[kv[0]] = kv[1];
+  }
+  return qs;
+}
+
+var qs = querystring();
+
 (function(d) {
   var baseurl = 'https://api.github.com/', i;
-
-  function querystring() {
-    var href = window.location.href, kv;
-    var params = href.slice(href.indexOf('?') + 1).split('&');
-    var qs = [];
-
-    for (i = 0; i < params.length; i++) {
-      kv = params[i].split('=');
-      qs.push(kv[0]);
-      qs[kv[0]] = kv[1];
-    }
-    return qs;
-  }
 
   function store(key, value) {
     try {
@@ -46,8 +48,6 @@
     }
     return ret;
   }
-
-  var qs = querystring();
 
   function template(type, data) {
     var t = d.getElementById(type + '-card');
