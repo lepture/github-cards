@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 14px;
-  font-family: "Helvetica Nenu", Hevetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   overflow: hidden;
 }
 body.ready {
