@@ -1,5 +1,5 @@
 (function(d) {
-  var base = "http://lab.lepture.com/github-cards/";
+  var base = "//lab.lepture.com/github-cards/";
 
   var i, count = 0;
 
