@@ -2,7 +2,7 @@
 
 Card for your GitHub profile, card for your GitHub repositories.
 
-[![Donate lepture](https://img.shields.io/badge/donate-lepture-green.svg)](https://lepture.herokuapp.com/?amount=1000&reason=lepture%2Fgithub-cards)
+[![Donate lepture](https://img.shields.io/badge/donate-lepture-green.svg)](https://typlog.com/donate?amount=10&reason=lepture%2Fgithub-cards)
 
 ![GitHub Cards Preview](https://f.cloud.github.com/assets/290496/1350967/28069848-3716-11e3-8f87-0bef45aff1c4.png)
 
