@@ -26,14 +26,14 @@ Example of user card:
 
 ```html
 <div class="github-card" data-user="lepture"></div>
-<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
 ```
 
 Example of repo card:
 
 ```html
 <div class="github-card" data-user="lepture" data-repo="github-cards"></div>
-<script src="//cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
 ```
 
 Data parameters:
@@ -69,7 +69,7 @@ GitHub Cards is available on jsdelivr now. Use widget hosted on jsdelivr:
 
 ```html
 <div class="github-card" data-user="lepture" data-repo="github-cards"></div>
-<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
 ```
 
 ## Contribution
