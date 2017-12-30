@@ -117,7 +117,7 @@ var qs = querystring();
         store(url, data);
       }
       data.login = user;
-      data.name = escape(data.name);
+      data.name = escape(data.name || user);
       data.public_repos = numberic(data.public_repos) || defaults;
       data.public_gists = numberic(data.public_gists) || defaults;
       data.followers = numberic(data.followers) || defaults;
