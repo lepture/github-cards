@@ -1,7 +1,7 @@
 {
   "name": "github-cards",
   "repo": "lepture/github-cards",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "files": {
     "basePath": "jsdelivr"
   }
