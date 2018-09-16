@@ -62,7 +62,7 @@ def create_widget():
     with open('package.json') as f:
         pkg = json.load(f)
 
-    url = '//cdn.jsdelivr.net/github-cards/%s/' % pkg['version']
+    url = '//cdn.jsdelivr.net/gh/lepture/github-cards@%s/' % pkg['version']
 
     with open('src/widget.js') as f:
         content = f.read()
