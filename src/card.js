@@ -201,7 +201,7 @@ var qs = querystring();
 
   function numberic(num) {
     if (!num) return null;
-    if (num === 1000) return 1;
+    if (num === 1000) return '1k';
     if (num < 1000) return num;
     num = num / 1000;
     if (num > 10) return parseInt(num, 10) + 'k';
