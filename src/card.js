@@ -1,31 +1,34 @@
-function querystring() {
-    var params;
-    var ph = d.getElementById("placeholder");
-
-    var href = window.location.href, kv;
-
-    //Get the parameters from a placeholder in case there is any
-    //If not, use the url
-    if (ph && ph.getAttribute("datasrc")) {
-        params = ph.getAttribute("datasrc").split('&');
-    } else {
-        params = href.slice(href.indexOf('?') + 1).split('&');
-    }
-
-    var qs = [];
-
-    for (i = 0; i < params.length; i++) {
-        kv = params[i].split('=');
-        qs.push(kv[0]);
-        qs[kv[0]] = kv[1];
-    }
-    return qs;
-}
-
-var qs = querystring();
-
 (function (d) {
     var baseurl = 'https://api.github.com/', i;
+
+
+    //Parameters of the url: [user, repo, mode]
+    //Posible mode values: "recent".  Posibility to add new modes.
+    //Example of placeholder: <div id="placeholder" datasrc="user=[user]&mode=[mode]"></div>
+    function querystring() {
+        var params;
+        var ph = d.getElementById('placeholder');
+
+        var href = window.location.href, kv;
+
+        //Get the parameters from a placeholder in case there is any
+        //If not, use the url
+        if (ph && ph.getAttribute('datasrc')) {
+            params = ph.getAttribute('datasrc').split('&');
+        } else {
+            params = href.slice(href.indexOf('?') + 1).split('&');
+        }
+
+        var qs = [];
+
+        for (i = 0; i < params.length; i++) {
+            kv = params[i].split('=');
+            qs.push(kv[0]);
+            qs[kv[0]] = kv[1];
+        }
+        return qs;
+    }
+
 
     function store(key, value) {
         try {
@@ -170,7 +173,9 @@ var qs = querystring();
 
     function repoCard(user, repo) {
         var url = baseurl + 'repos/' + user + '/' + repo;
-        request(url, generateRepoCard(data));
+        qs.push("url");
+        qs.url = url;
+        request(url, generateRepoCard);
     }
 
     //Returns the most recently updated repository's card
@@ -187,12 +192,17 @@ var qs = querystring();
             }
             url = maxDate.url;
 
-            request(url, generateRepoCard(data));
+
+            qs.push("url");
+            qs.url = url;
+            request(url, generateRepoCard);
         });
     }
 
     function generateRepoCard(data) {
         data = data || {};
+        var user = qs.user;
+        var url = qs.url;
         var message = data.message;
         var defaults = '0';
         if (message) {
@@ -260,6 +270,8 @@ var qs = querystring();
         return num.toFixed(1) + 'k';
     }
 
+    var qs = querystring();
+
     if (!qs.user) {
         errorCard();
     } else if (qs.repo) {
@@ -271,6 +283,7 @@ var qs = querystring();
                 break;
             default:
                 //posible future modes
+                userCard(qs.user);
                 break;
         }
     } else {
