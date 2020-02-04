@@ -1,6 +1,19 @@
 function querystring() {
+    var params;
+    var ph = d.getElementById("placeholder");
+    ds = ph.getAttribute("datasrc");
+
+
     var href = window.location.href, kv;
-    var params = href.slice(href.indexOf('?') + 1).split('&');
+
+    //Get the parameters from a placeholder in case there is any
+    //If not, use the url
+    if (ph && ph.getAttribute("datasrc")) {
+        params = ph.getAttribute("datasrc").split('&');
+    } else {
+        params = href.slice(href.indexOf('?') + 1).split('&');
+    }
+
     var qs = [];
 
     for (i = 0; i < params.length; i++) {
@@ -81,7 +94,7 @@ var qs = querystring();
 
     //mode 0 just adds the card at the bottom of the body (default)
     //mode 1 replaces the first <placeholder> div in the document
-    function linky(card, mode=0) {
+    function linky(card, mode = 0) {
         var links = card.getElementsByTagName('a');
         for (i = 0; i < links.length; i++) {
             (function (link) {
@@ -229,7 +242,7 @@ var qs = querystring();
         card.innerHTML = template('repo', data);
         linky(card);
     }
-    
+
 
     function errorCard() {
     }
