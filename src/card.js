@@ -1,8 +1,6 @@
 function querystring() {
     var params;
     var ph = d.getElementById("placeholder");
-    ds = ph.getAttribute("datasrc");
-
 
     var href = window.location.href, kv;
 
@@ -240,7 +238,13 @@ var qs = querystring();
         var card = d.createElement('div');
         card.className = 'github-card repo-card';
         card.innerHTML = template('repo', data);
-        linky(card);
+
+        //In case of placeholder, linky is called in mode 1 (replacing placeholder)
+        if (d.getElementById("placeholder")) {
+            linky(card, 1);
+        } else {
+            linky(card);
+        }
     }
 
 
@@ -260,6 +264,15 @@ var qs = querystring();
         errorCard();
     } else if (qs.repo) {
         repoCard(qs.user, qs.repo);
+    } else if (qs.mode) {
+        switch (qs.mode) {
+            case "recent":
+                recentRepoCard(qs.user);
+                break;
+            default:
+                //posible future modes
+                break;
+        }
     } else {
         userCard(qs.user);
     }
