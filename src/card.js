@@ -1,4 +1,4 @@
-(function (d) {
+﻿(function (d) {
     var baseurl = 'https://api.github.com/', i;
 
 
@@ -28,7 +28,6 @@
         }
         return qs;
     }
-
 
     function store(key, value) {
         try {
@@ -173,6 +172,8 @@
 
     function repoCard(user, repo) {
         var url = baseurl + 'repos/' + user + '/' + repo;
+
+        //TODO change the way i'm passing this parameters
         qs.push("url");
         qs.url = url;
         request(url, generateRepoCard);
@@ -192,7 +193,7 @@
             }
             url = maxDate.url;
 
-
+            //TODO change the way i'm passing this parameters
             qs.push("url");
             qs.url = url;
             request(url, generateRepoCard);
@@ -259,6 +260,16 @@
 
 
     function errorCard() {
+        var card = d.createElement('div');
+        card.className = 'github-card repo-card';
+        card.textContent = '¯\_(ツ)_ /¯';
+        //In case of placeholder, linky is called in mode 1 (replacing placeholder)
+        if (d.getElementById("placeholder")) {
+            linky(card, 1);
+        } else {
+            linky(card);
+        }
+
     }
 
     function numberic(num) {
