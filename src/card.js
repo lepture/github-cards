@@ -186,7 +186,7 @@
         var urlRepos = baseurl + 'users/' + user + '/repos';//api.github.com/users/USERNAME/repos
         request(urlRepos, function (data) {
 
-            data.sort((a, b) => a.updated_at > b.updated_at ? 1 : -1);
+            data.sort((a, b) => a.updated_at < b.updated_at ? 1 : -1);
             if (index >= data.length) {
                 errorCard();
                 return;
@@ -285,14 +285,13 @@
         return d.getElementsByClassName('placeholder').length;
     }
 
-    var i = 0;
     var maxLoops = 1;
     var nPh = numberOfPlaceholders();
     if (nPh > maxLoops) {
         maxLoops = nPh;
     }
-    for (i = 0; i < maxLoops; i++) {
-        var qs = querystring(i);
+    for (var j = 0; j < maxLoops; j++) {
+        var qs = querystring(j);
 
         if (!qs.user) {
             errorCard();
