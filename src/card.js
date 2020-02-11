@@ -2,12 +2,13 @@
     var baseurl = 'https://api.github.com/', i;
 
 
-    //Parameters of the url: [user, repo, mode]
-    //Posible mode values: "recent".  Posibility to add new modes.
-    //Example of placeholder: <div id="placeholder" datasrc="user=[user]&mode=[mode]"></div>
-    function querystring() {
+    //Parameters of the url: [user, repo, mode, (optional)position]
+    //Posible mode values: "recent".  Posibility to add new modes.Uses "position" to get the second or third or nth most recent repo. if not specified, assumes 0
+    //Example of placeholder: <div class="placeholder" datasrc="user=[user]&mode=[mode]"></div>
+    function querystring(index = 0) {
         var params;
-        var ph = d.getElementById('placeholder');
+        var ph = d.getElementsByClassName('placeholder')[index];
+
 
         var href = window.location.href, kv;
 
@@ -180,18 +181,17 @@
     }
 
     //Returns the most recently updated repository's card
-    function recentRepoCard(user) {
+    function recentRepoCard(user, index = 0) {
         var url = '';
         var urlRepos = baseurl + 'users/' + user + '/repos';//api.github.com/users/USERNAME/repos
         request(urlRepos, function (data) {
-            var i;
-            var maxDate = data[0];
-            for (i = 1; i < data.length; i++) {
-                if (maxDate.updated_at < data[i].updated_at) {
-                    maxDate = data[i];
-                }
+
+            data.sort((a, b) => a.updated_at > b.updated_at ? 1 : -1);
+            if (index >= data.length) {
+                errorCard();
+                return;
             }
-            url = maxDate.url;
+            url = data[index].url;
 
             //TODO change the way i'm passing this parameters
             qs.push("url");
@@ -281,24 +281,40 @@
         return num.toFixed(1) + 'k';
     }
 
-    var qs = querystring();
+    function numberOfPlaceholders() {
+        return d.getElementsByClassName('placeholder').length;
+    }
 
-    if (!qs.user) {
-        errorCard();
-    } else if (qs.repo) {
-        repoCard(qs.user, qs.repo);
-    } else if (qs.mode) {
-        switch (qs.mode) {
-            case "recent":
-                recentRepoCard(qs.user);
-                break;
-            default:
-                //posible future modes
-                userCard(qs.user);
-                break;
+    var i = 0;
+    var maxLoops = 1;
+    var nPh = numberOfPlaceholders();
+    if (nPh > maxLoops) {
+        maxLoops = nPh;
+    }
+    for (i = 0; i < maxLoops; i++) {
+        var qs = querystring(i);
+
+        if (!qs.user) {
+            errorCard();
+        } else if (qs.repo) {
+            repoCard(qs.user, qs.repo);
+        } else if (qs.mode) {
+            switch (qs.mode) {
+                case "recent":
+                    if (qs.position && qs.position > 0) { //In case of explicit position, we call the function like this
+                        recentRepoCard(qs.user, qs.position);
+                    } else {
+                        recentRepoCard(qs.user);
+                    }
+                    break;
+                default:
+                    //posible future modes
+                    userCard(qs.user);
+                    break;
+            }
+        } else {
+            userCard(qs.user);
         }
-    } else {
-        userCard(qs.user);
     }
 
     function escape(text) {
