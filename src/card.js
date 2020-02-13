@@ -165,7 +165,7 @@
             card.className = 'github-card user-card';
             card.innerHTML = template('user', data);
             linky(card);
-        });
+        }, false);
     }
 
     function repoCard(user, repo) {
@@ -174,7 +174,7 @@
         //TODO change the way i'm passing this parameters
         qs.push("url");
         qs.url = url;
-        request(url, generateRepoCard);
+        request(url, generateRepoCard, false);
     }
 
     //Returns the most recently updated repository's card
