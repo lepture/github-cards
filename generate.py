@@ -47,15 +47,15 @@ def create_card(theme):
 
     css = shell(['cleancss', 'theme/%s.css' % theme])
 
-    with open('src/card.js', 'rb') as f:
+    with open('src/card.js', 'r') as f:
         content = f.read()
         content += GA % 'UA-21475122-2'
 
-    js = shell(['uglifyjs', '-m'], content)
+    js = shell(['uglifyjs', '-m'], content.encode())
 
-    out = html % (css, tinyhtml(template), js)
+    out = html % (css.decode(), tinyhtml(template), js.decode())
     with open('cards/%s.html' % theme, 'wb') as f:
-        f.write(out)
+        f.write(out.encode())
 
 
 def create_widget():
@@ -71,7 +71,7 @@ def create_widget():
             'var base = "%s";' % url
         )
 
-    js = shell(['uglifyjs', '-m'], content)
+    js = shell(['uglifyjs', '-m'], content.encode())
     with open('jsdelivr/widget.js', 'wb') as f:
         f.write(js)
 

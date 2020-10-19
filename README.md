@@ -72,6 +72,19 @@ GitHub Cards is available on jsdelivr now. Use widget hosted on jsdelivr:
 <script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
 ```
 
+## Building
+
+If you want to work on this project locally, you'll first need to clone it `git clone https://github.com/lepture/github-cards`
+
+Then you'll need to install a few build dependencies:
+
+* [python3](https://www.python.org/) (if not already installed, through your favorite package manager)
+* [npm](https://www.npmjs.com/) (through your favorite package manager, along with Node.js)
+* [uglifyjs](https://www.npmjs.com/package/uglify-js) through `sudo npm install -g uglify-js`
+* [cleancss](https://www.npmjs.com/package/clean-css-cli) through `sudo npm install -g clean-css-cli`
+
+Once all of this is installed, you should be all set to build the site ! Use `make build` to do so. You can then view the site by opening _\_site/index.html_ in your browser of choice, and start making changes (you'll need to rebuild the site every time you change the files in _src/_)
+
 ## Contribution
 
 This project is under the BSD License.
