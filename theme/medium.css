@@ -187,3 +187,6 @@ body.ready {
 .repo-card .Objective-C {
   background: #438eff;
 }
+.repo-card .C\# {
+    background: #178600;
+}
