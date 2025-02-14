@@ -81,6 +81,7 @@
 
     var iframe = d.createElement('iframe');
     iframe.setAttribute('id', identity);
+    iframe.setAttribute('title', 'GitHub Profile');
     iframe.setAttribute('frameborder', 0);
     iframe.setAttribute('scrolling', 0);
     iframe.setAttribute('allowtransparency', true);
